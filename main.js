@@ -11,19 +11,8 @@ let tipPercentge = 0;
 let tipAmount = 0;
 let totalAmount = 0;
 
+let activeTip = "";
 // --------------------------------------------------------------
-
-custom.onfocus = () => {
-  tipButtons.forEach((ele) => {
-    ele.classList.remove("active");
-  });
-};
-
-custom.onblur = () => {
-  if (custom.value == "") {
-    tipButtons[0].classList.add("active");
-  } else return;
-};
 
 PeopleIn.oninput = checkInput;
 billIn.oninput = checkInput;
@@ -36,6 +25,7 @@ function tipPercentage() {
         ele.classList.remove("active");
       });
       event.currentTarget.classList.add("active");
+      activeTip = event.currentTarget.textContent;
       tipPercentge = parseInt(but.textContent) / 100;
       checkInput();
     });
@@ -76,6 +66,22 @@ reset.onclick = () => {
 };
 //---------------------------------------------------------------
 
-// change active class on click ( tip button )
+custom.onfocus = () => {
+  tipButtons.forEach((ele) => {
+    ele.classList.remove("active");
+  });
+};
 
-// let tipButtons = document.querySelectorAll(".tip-button");
+custom.onblur = () => {
+  if (custom.value == "") {
+    if (activeTip == "") {
+      return;
+    } else {
+      tipButtons.forEach((ele) => {
+        if (ele.textContent == activeTip) {
+          ele.classList.add("active");
+        }
+      });
+    }
+  } else return;
+};
