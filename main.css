@@ -11,7 +11,7 @@ body {
   box-sizing: border-box;
 }
 .holder {
-  width: 50%;
+  width: 55%;
 }
 .holder h1 {
   text-align: center;
@@ -56,13 +56,14 @@ body {
   position: absolute;
   content: "Can't be zero";
   top: 4px;
-  left: 230px;
+  right: 0;
   font-size: 12px;
   color: rgba(255, 0, 0, 0.438);
   display: none;
+  min-width: 80px;
 }
 .holder .main .calc input:not(.custom) {
-  width: 90%;
+  width: 100%;
   background-color: hsl(189, 41%, 97%);
   color: hsl(183, 100%, 15%);
   font-weight: bold;
@@ -109,7 +110,8 @@ body {
   margin-bottom: 6px;
   transition: 0.2s;
 }
-.holder .main .calc .tip button:hover {
+.holder .main .calc .tip button:hover,
+.holder .main .calc .tip button.active {
   background-color: #9fe8df;
   color: hsl(183, 100%, 15%);
 }
@@ -162,6 +164,7 @@ body {
   border-radius: 6px;
   cursor: pointer;
   transition: 0.2s;
+  color: #fff;
 }
 .holder .view-area button:hover {
   background-color: #9fe8df;
@@ -170,11 +173,20 @@ body {
 
 @media (max-width: 991px) {
   .holder {
-    width: 90%;
     margin: auto;
   }
   .holder .main {
     flex-direction: column;
     gap: 15px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .holder {
+    width: 80%;
+  }
+}
+@media (max-width: 767px) {
+  .holder {
+    width: 90%;
   }
 }
